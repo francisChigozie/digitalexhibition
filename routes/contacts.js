@@ -5,7 +5,7 @@ const Contact= require('../models/Contact')
 const router = express.Router({mergeParams: true})
 
 router
-.route('/') 
+.route('/api/v1') 
 .post(createContact)
 
 

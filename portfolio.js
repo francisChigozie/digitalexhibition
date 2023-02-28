@@ -24,7 +24,7 @@ const app = express()
 app.use(express.json())
 
 //Dev logging middleware
-if(process.env.NODE_ENV === 'development'){
+if(process.env.NODE_ENV === 'production'){
      app.use(morgan('dev'));
 }
 
@@ -33,7 +33,10 @@ const PORT = process.env.PORT || 3000
 app.set('view engine', 'ejs');
 
 app.use(cors({
-    origin: "https://cyricusdigitalspace.herokuapp.com/" //or your netlify domain
+    origin: "https://digitalexhibition.herokuapp.com/" //or your netlify domain https://cyricusdigitalspace.herokuapp.com/
+}))
+app.use(cors({
+    origin: "https://www.chigoziefrancis-portfolio.dev/dist/"
 }))
 
 app.use(express.urlencoded({extended: true}))
@@ -61,8 +64,8 @@ app.use(limiter)
 //Prevent http param pollution
 app.use(hpp())
 
-app.use('/', router)
-//app.use('/api/v1/contacts'contacts)
+app.use('/api/v1', router)
+//app.use('/api/v1/contacts'contact)
 app.use(errorHadler)    
 
 //CONNECTINT TO DATA BASE

@@ -5,7 +5,7 @@ const Book = require('../models/Book')
 const router = express.Router({mergeParams: true})
 
 router
-.route('/') 
+.route('/api/v1') 
 .post(createBook)
 
 

@@ -10,23 +10,23 @@ const advancedResults = require('../middleware/advancedResult')
 
 
 // About Page
-router.get('/about', function (req, res) {
+router.get('/api/v1/about', function (req, res) {
     //app.use(express.static(process.cwd() + '/uploads'))
       res.sendFile(path.join(__dirname,'/html/about.html'))
 }); 
 
 //Resume
-router.get('/resume', function (req, res) {
+router.get('/api/v1/resume', function (req, res) {
      res.sendFile(path.join(__dirname, '/html/resume.html')) 
 }); 
 
 //PROJECTS PAGE
-router.get('/project', function (req, res) {
+router.get('/api/v1/project', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/projects.html'))
 }); 
 
 //Contact Infors
-router.get('/contact', function (req, res) {
+router.get('/api/v1/contact', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/contact.html'))
 }); 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ router.get('/contact', function (req, res) {
 //@route  POST /api/v1/contact
 //@access  Public
 
-router.post('/contact', asyncHandler(async(req, res, next) => {
+router.post('/api/v1/contact', asyncHandler(async(req, res, next) => {
        //const {email} = req.body;
         // sendmail(email)
 
@@ -54,7 +54,7 @@ router.post('/contact', asyncHandler(async(req, res, next) => {
 //@route  GET /api/v1/contacts/:id
 //@access  Private/admin
 
-router.get('/contact/:id', asyncHandler(async(req, res, next) => {
+router.get('/api/v1/contact/:id', asyncHandler(async(req, res, next) => {
      const newContact = await Contact.findById(req.params.id)
 
      res.status(200).json({
@@ -178,27 +178,27 @@ router.post('/contact',async (req, res) => {
  
 
 //Deutsch
-router.get('/deutsch', function (req, res) {
+router.get('/api/v1/deutsch', function (req, res) {
         const name = req.body;
         console.log(name)
       res.render('deutsch')
 }); 
 
 //Form About Animals And form
-router.get('/animal', function (req, res) {
+router.get('/api/v1/animal', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/list.html'))
 }); 
 
 //form.html
-router.get('/formanimal', function (req, res) {
+router.get('/api/v1/formanimal', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/form.html'))
 }); 
 
 //book.html
-router.get('/animal', function (req, res) {
+router.get('/api/v1/animal', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/list.html'))
 }); 
-router.post('/handleForm', (req, res) => {
+router.post('/api/v1/handleForm', (req, res) => {
     var name = req.body.username;
     var animals = [].concat(req.body.animal);
 res.render('showAnimals', {name: name, animals:animals});
@@ -206,7 +206,7 @@ res.render('showAnimals', {name: name, animals:animals});
 
 ////////////////////////////////////////////
 
-router.get('/book', function (req, res) {
+router.get('/api/v1/book', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/bookform.html'))
 }); 
 
@@ -214,7 +214,7 @@ router.get('/book', function (req, res) {
 //@route  POST /api/v1/book
 //@access  Public
 
-router.post('/createbook', asyncHandler(async(req, res, next) => {
+router.post('/api/v1/createbook', asyncHandler(async(req, res, next) => {
 
          const newBook = await Book.create(req.body)
 
@@ -230,7 +230,7 @@ router.post('/createbook', asyncHandler(async(req, res, next) => {
 }))
 
 //GET ALL BOOKS
-router.get('/all', (req, res) => {
+router.get('/api/v1/all', (req, res) => {
     Book.find((err, book) => {
         if (err) {
             res.type('html').status(500)
@@ -245,7 +245,7 @@ router.get('/all', (req, res) => {
 });
 
 //BOOK SEARCH
-router.get('/booksearch', function (req, res) {
+router.get('/api/v1/booksearch', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/booksearch.html'))
 }); 
 
@@ -279,7 +279,7 @@ router.post('/api', (req, res) => {
 })
 
 
-router.post('/search', (req, res) => {
+router.post('/api/v1/search', (req, res) => {
     if (req.body.which == 'all') {
         searchAll(req, res);
     }else if(req.body.which == 'any') {
@@ -336,23 +336,23 @@ function searchAny(req, res) {
 }
 
 // Loan Calculators
-router.get('/calculate', function (req, res) {
+router.get('/api/v1/calculate', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/loancalc.html'))
 }); 
 
 // Number Guesser
-router.get('/guess', function (req, res) {
+router.get('/api/v1/guess', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/guess.html'))
 }); 
 
 // New Tasls
-router.get('/booklist', function (req, res) {
+router.get('/api/v1/booklist', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/booklist.html'))
 }); 
 
 
 //Github Finder
-router.get('/github', function (req, res) {
+router.get('/api/v1/github', function (req, res) {
       res.sendFile(path.join(__dirname, '/html/github.html'))
 }); 
 
